@@ -3,16 +3,30 @@ on:
 #   push:
 #     branches-ignore:
 #       - main
+  workflow_dispatch:
   issue_comment:
     types:
       - created
+  push:
+    tags:
+      - run_test
 jobs:
+  deploy:
+    environment: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Say OK
+        run: |
+          echo "OK"
+
+
   tests:
     name: Run tests
     #if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
-    timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v3
       - name: Say OK
         run: |
           echo "NOT OK"
