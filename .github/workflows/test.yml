@@ -1,13 +1,16 @@
 name: Run tests
 on:
-  push:
-    branches-ignore:
-      - main
-  workflow_dispatch:
-
+#   push:
+#     branches-ignore:
+#       - main
+#   workflow_dispatch:
+  issue_comment:
+    types:
+      - created
 jobs:
   tests:
     name: Run tests
+    #if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
