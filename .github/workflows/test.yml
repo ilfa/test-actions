@@ -1,0 +1,16 @@
+name: Run tests
+on:
+#   push:
+#     branches-ignore:
+#       - main
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Say OK
+        run: |
+          echo "OK"
