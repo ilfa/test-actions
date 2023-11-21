@@ -2,7 +2,7 @@ name: Pre-Release Testing
 
 on:
   release:
-    types: [prereleased]
+    types: [published]
 
 jobs:
   test:
