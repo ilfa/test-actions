@@ -8,6 +8,7 @@ on:
 
 permissions:
   pull-requests: write
+  contents: read
 
 jobs:
   create-pr:
@@ -17,11 +18,9 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: 'main'
-        fetch-depth: 0
 
     - name: Create Pull Request
       run: |
-        gh auth setup-git
         gh pr create --base production --head main --title "Merge main into production" --body "Automated PR to merge main branch into production"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
