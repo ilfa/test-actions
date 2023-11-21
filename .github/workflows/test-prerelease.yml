@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  test-prerelease:
     runs-on: ubuntu-latest
 
     steps:
