@@ -21,4 +21,5 @@ jobs:
     - name: Create Pull Request
       run: |
         gh pr create --base production --head main --title "Merge main into production" --body "Automated PR to merge main branch into production"
-
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
