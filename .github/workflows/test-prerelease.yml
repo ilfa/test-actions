@@ -17,7 +17,7 @@ jobs:
 
       - name: Say OK
         run: |
-          echo "OK"
+          echo "OK!"
 
       - name: Submit result
         id: create_check
