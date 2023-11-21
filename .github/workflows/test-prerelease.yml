@@ -1,0 +1,16 @@
+name: Pre-Release Testing
+
+on:
+  release:
+    types: [prereleased]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Say OK
+        run: |
+          echo "OK"

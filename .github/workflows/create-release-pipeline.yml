@@ -1,0 +1,24 @@
+name: Create PR to Production
+
+on:
+  workflow_run:
+    workflows: ["Pre-Release Testing"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v3
+      with:
+        ref: 'main'
+
+    - name: Create Pull Request
+      run: |
+        gh pr create --base production --head main --title "Merge main into production" --body "Automated PR to merge main branch into production"
+
