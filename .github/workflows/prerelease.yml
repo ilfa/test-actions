@@ -23,4 +23,4 @@ jobs:
           body: This is a pre-release for version ${{ github.event.inputs.version }}
           draft: false
           prerelease: true
-          token: ${{ secrets.GH_TOKEN }}
+#          token: ${{ secrets.GH_TOKEN }}
