@@ -18,7 +18,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.event.inputs.version }}
-          release_name: Pre-Release ${{ github.event.inputs.version }}
+          name: Pre-Release ${{ github.event.inputs.version }}
           body: This is a pre-release for version ${{ github.event.inputs.version }}
           draft: false
           prerelease: true
