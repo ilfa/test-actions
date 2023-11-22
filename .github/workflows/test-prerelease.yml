@@ -19,21 +19,21 @@ jobs:
         run: |
           echo "OK!"
 
-      - name: Submit result
-        id: create_check
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const response = await github.rest.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'Pre-Release Testing',
-              head_sha: '${{ github.event.workflow_run.head_commit.id }}',
-              status: 'completed',
-              conclusion: 'success',
-              output: {
-                title: 'Test Results',
-                summary: 'All tests passed successfully.'
-              }
-            });
-            return response.data.id;
+#      - name: Submit result
+#        id: create_check
+#        uses: actions/github-script@v7
+#        with:
+#          script: |
+#            const response = await github.rest.checks.create({
+#              owner: context.repo.owner,
+#              repo: context.repo.repo,
+#              name: 'Pre-Release Testing',
+#              head_sha: '${{ github.event.workflow_run.head_commit.id }}',
+#              status: 'completed',
+#              conclusion: 'success',
+#              output: {
+#                title: 'Test Results',
+#                summary: 'All tests passed successfully.'
+#              }
+#            });
+#            return response.data.id;
