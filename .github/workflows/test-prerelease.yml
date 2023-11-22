@@ -17,12 +17,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Submit workflow start
+        id: create_check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const response = await github.rest.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: 'Pre-Release Testing',
+              head_sha: '${{ github.sha }}',
+              status: 'in_progress',
+            });
+            return response.data.id;
+
       - name: Say OK
         run: |
           echo "OK!"
 
       - name: Submit result
-        id: create_check
+        id: create_check_result
         uses: actions/github-script@v7
         with:
           script: |
