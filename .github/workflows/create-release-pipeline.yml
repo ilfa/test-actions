@@ -1,26 +1,33 @@
-name: Create PR to Production
+name: Create PR
 
 on:
-  workflow_run:
-    workflows: ["Pre-Release Testing"]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+      target_branch:
+        description: 'Target branch for the PR (main or test)'
+        required: true
+        default: 'main'
+      tag_name:
+        description: 'Tag name for release (optional)'
+        required: false
+        default: ''
+      prerelease:
+        description: 'Is this a prerelease? (true/false)'
+        required: false
+        default: false
 
 permissions:
   pull-requests: write
   contents: read
 
 jobs:
-  create-pr:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout main branch
-      uses: actions/checkout@v3
-      with:
-        ref: 'main'
-
-    - name: Create Pull Request
-      run: |
-        gh pr create --base production --head main --title "Merge main into production" --body "Automated PR to merge main branch into production"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  create-pr-to-main:
+    if: github.event.release.prerelease
+    name: Create PR to the main branch
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@d9d4864a374275d853fe8a0a08e2589c8031309d
+    with:
+      target_branch: ${{ github.event.inputs.target_branch }}
+      tag_name: ${{ github.event.inputs.tag_name }}
+      prerelease: ${{ github.event.inputs.prerelease }}
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
