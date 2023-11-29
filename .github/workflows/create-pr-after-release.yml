@@ -22,7 +22,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   create-pr-to-test:
-    if: ! github.event.release.prerelease
+    if: ${{ !github.event.release.prerelease }}
     name: Create PR from main to the test branch
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
     with:
