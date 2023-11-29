@@ -24,7 +24,7 @@ jobs:
   create-pr-to-main:
     if: github.event.release.prerelease
     name: Create PR to the main branch
-    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@d9d4864a374275d853fe8a0a08e2589c8031309d
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@84b5e51ca5c3f0bfe4418dd3b01f610eeec79e6e
     with:
       target_branch: ${{ github.event.inputs.target_branch }}
       tag_name: ${{ github.event.inputs.tag_name }}
