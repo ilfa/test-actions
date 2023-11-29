@@ -6,18 +6,10 @@ on:
       - published
 
 jobs:
-  create-pr-to-main:
-    if: ${{ github.event.release.prerelease }}
+  create-pr:
     name: Create PR to the main branch
     uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
     with:
-      target_branch: main
+      target_branch: ${{ github.event.release.prerelease && 'main' || 'test' }}
       tag_name: ${{ github.event.release.tag_name }}
       prerelease: ${{ github.event.release.prerelease }}
-
-  create-pr-to-test:
-    if: ${{ !github.event.release.prerelease }}
-    name: Create PR from main to the test branch
-    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
-    with:
-      target_branch: test
