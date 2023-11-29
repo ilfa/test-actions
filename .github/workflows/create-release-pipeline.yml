@@ -36,4 +36,4 @@ jobs:
     with:
       target_branch: ${{ github.event.inputs.target_branch }}
       tag_name: ${{ github.event.inputs.tag_name }}
-      prerelease: ${{ github.event.inputs.prerelease == 'true }}
+      prerelease: ${{ github.event.inputs.prerelease }}
