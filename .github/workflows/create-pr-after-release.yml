@@ -1,0 +1,31 @@
+name: Create PR after release
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  create-pr-to-main:
+    if: github.event.release.prerelease
+    name: Create PR to the main branch
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
+    with:
+      target_branch: main
+      tag_name: ${{ github.event.release.tag_name }}
+      prerelease: ${{ github.event.release.prerelease }}
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  create-pr-to-test:
+    if: !github.event.release.prerelease
+    name: Create PR from main to the test branch
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
+    with:
+      target_branch: test
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
