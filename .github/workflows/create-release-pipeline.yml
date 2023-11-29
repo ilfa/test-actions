@@ -12,6 +12,7 @@ on:
         required: false
         default: ''
       prerelease:
+        type: boolean
         description: 'Is this a prerelease? (true/false)'
         required: false
         default: false
