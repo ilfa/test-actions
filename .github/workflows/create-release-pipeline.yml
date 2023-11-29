@@ -21,6 +21,14 @@ permissions:
   contents: read
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "target_branch: ${{ github.event.inputs.target_branch }}"
+          echo "tag_name: ${{ github.event.inputs.tag_name }}"
+          echo "prerelease: ${{ github.event.inputs.prerelease }}"
+
   create-pr-to-main:
     if: github.event.release.prerelease
     name: Create PR to the main branch
