@@ -1,0 +1,15 @@
+name: Create PR after release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  create-pr:
+    name: Create PR to the main branch
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
+    with:
+      target_branch: ${{ github.event.release.prerelease && 'main' || 'test' }}
+      tag_name: ${{ github.event.release.tag_name }}
+      prerelease: ${{ github.event.release.prerelease }}
