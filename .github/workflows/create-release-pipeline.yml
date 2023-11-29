@@ -32,7 +32,7 @@ jobs:
 
   create-pr-to-main:
     name: Create PR to the main branch
-    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@cd340b7289d1a4368f332ab6abfb9f3aed8c5764
+    uses: fingerprintjs/dx-team-toolkit/.github/workflows/create-pr-to-main.yml@74f8e1d24cc57bb329486530b847251c55364ae2
     with:
       target_branch: ${{ github.event.inputs.target_branch }}
       tag_name: ${{ github.event.inputs.tag_name }}
